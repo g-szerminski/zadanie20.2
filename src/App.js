@@ -4,10 +4,13 @@ import { Router, Route, IndexRoute, Link, hashHistory } from 'react-router';
 class App extends Component {
 	render() {
 		return (
-			<Router history={hashHistory}>
-				<Route path='/' component={Home} />
-				<Route path='/contact' component={Contact} />
-			</Router>
+			
+<Router history={hashHistory}>
+    <Route path='/' component={Navigation}>
+        <IndexRoute component={Home} />
+        <Route path='/contact' component={Contact} />
+    </Route>
+</Router>
 		)
 	}
 }
@@ -25,9 +28,12 @@ const Navigation = props => (
     </div>
 );
 
+
+const PageNotFound = () => <h1>404 Not Found</h1>;
 <Router history={hashHistory}>
-    <Route path='/' component={Navigation}>
-        <IndexRoute component={Home} />
-        <Route path='/contact' component={Contact} />
-    </Route>
+        <Route path='/' component={Navigation}>
+                <IndexRoute component={Home} />
+                <Route path='/contact' component={Contact} />
+        <Route path='*' component={PageNotFound} />
+        </Route>
 </Router>
